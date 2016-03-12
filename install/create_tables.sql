@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `beer` (
   `brewery` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
+  `beer_type` varchar(256),
   `barcode` varchar(32) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
@@ -42,10 +43,11 @@ CREATE TABLE IF NOT EXISTS `beer` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pw` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(30) NOT NULL,
+    `email` VARCHAR(50) NOT NULL,
+    `password` BINARY(60) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -56,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 CREATE TABLE IF NOT EXISTS `user_beer` (
   `user_id` int(11) NOT NULL,
   `beer_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`beer_id`),
   KEY `beer_id` (`beer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
